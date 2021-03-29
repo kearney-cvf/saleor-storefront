@@ -2,6 +2,7 @@ import "jest-styled-components";
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { AttributeValuesChecklist } from ".";
 import { DEFAULT_PROPS } from "./testData";
@@ -9,7 +10,9 @@ import { DEFAULT_PROPS } from "./testData";
 describe("<AttributeValuesChecklist />", () => {
   it("exists", () => {
     const wrapper = shallow(
-      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      <IntlProvider locale="en">
+        <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      </IntlProvider>
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -25,7 +28,9 @@ describe("<AttributeValuesChecklist />", () => {
 
   it("should show 5 atttributes visible", () => {
     const wrapper = mount(
-      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      <IntlProvider locale="en">
+        <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      </IntlProvider>
     );
 
     expect(wrapper.find("label").length).toEqual(5);
@@ -33,7 +38,9 @@ describe("<AttributeValuesChecklist />", () => {
 
   it("should have one attribute checked set to true", () => {
     const wrapper = mount(
-      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      <IntlProvider locale="en">
+        <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      </IntlProvider>
     );
 
     expect(
@@ -44,7 +51,9 @@ describe("<AttributeValuesChecklist />", () => {
   });
   it("should have attribute not checked set to false", () => {
     const wrapper = mount(
-      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      <IntlProvider locale="en">
+        <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      </IntlProvider>
     );
 
     expect(
@@ -56,7 +65,9 @@ describe("<AttributeValuesChecklist />", () => {
 
   it("should show 6 attributes visible after clicking on view all options button", () => {
     const wrapper = mount(
-      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      <IntlProvider locale="en">
+        <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
+      </IntlProvider>
     );
 
     wrapper.find("button").simulate("click");

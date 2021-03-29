@@ -2,6 +2,7 @@ import "jest-styled-components";
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { ProductList } from ".";
 import { PRODUCTS } from "./fixtures";
@@ -9,24 +10,28 @@ import { PRODUCTS } from "./fixtures";
 describe("<ProductList />", () => {
   it("exists", () => {
     const wrapper = shallow(
-      <ProductList
-        products={PRODUCTS}
-        canLoadMore
-        loading={false}
-        onLoadMore={jest.fn()}
-      />
+      <IntlProvider locale="en">
+        <ProductList
+          products={PRODUCTS}
+          canLoadMore
+          loading={false}
+          onLoadMore={jest.fn()}
+        />
+      </IntlProvider>
     );
 
     expect(wrapper.exists()).toEqual(true);
   });
   it("show loading", () => {
     const wrapper = mount(
-      <ProductList
-        products={PRODUCTS}
-        canLoadMore
-        loading
-        onLoadMore={jest.fn()}
-      />
+      <IntlProvider locale="en">
+        <ProductList
+          products={PRODUCTS}
+          canLoadMore
+          loading
+          onLoadMore={jest.fn()}
+        />
+      </IntlProvider>
     );
 
     expect(wrapper.text()).not.toContain("More +");
@@ -35,12 +40,14 @@ describe("<ProductList />", () => {
     const handleLoadMore = jest.fn();
 
     const wrapper = mount(
-      <ProductList
-        products={PRODUCTS}
-        canLoadMore
-        loading={false}
-        onLoadMore={handleLoadMore}
-      />
+      <IntlProvider locale="en">
+        <ProductList
+          products={PRODUCTS}
+          canLoadMore
+          loading={false}
+          onLoadMore={handleLoadMore}
+        />
+      </IntlProvider>
     );
 
     expect(wrapper.text()).toContain("More +");

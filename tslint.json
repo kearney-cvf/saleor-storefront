@@ -17,6 +17,7 @@
     "no-submodule-imports": [false],
     "no-var-requires": false,
     "interface-over-type-literal": false,
+    "simple-import-sort/imports": false,
     "variable-name": {
       "options": [
         "ban-keywords",

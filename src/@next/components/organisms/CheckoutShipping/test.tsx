@@ -2,6 +2,7 @@ import "jest-styled-components";
 
 import { mount } from "enzyme";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { CheckoutShipping } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
@@ -10,10 +11,12 @@ describe("<CheckoutShipping />", () => {
   it("renders shipping methods", () => {
     const selectShippingMethod = jest.fn();
     const wrapper = mount(
-      <CheckoutShipping
-        {...DEFAULT_PROPS}
-        selectShippingMethod={selectShippingMethod}
-      />
+      <IntlProvider locale="en">
+        <CheckoutShipping
+          {...DEFAULT_PROPS}
+          selectShippingMethod={selectShippingMethod}
+        />
+      </IntlProvider>
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -29,10 +32,12 @@ describe("<CheckoutShipping />", () => {
   it("simulates change and submit events", done => {
     const selectShippingMethod = jest.fn();
     const wrapper = mount(
-      <CheckoutShipping
-        {...DEFAULT_PROPS}
-        selectShippingMethod={selectShippingMethod}
-      />
+      <IntlProvider locale="en">
+        <CheckoutShipping
+          {...DEFAULT_PROPS}
+          selectShippingMethod={selectShippingMethod}
+        />
+      </IntlProvider>
     );
 
     const input = wrapper.find("input").at(0);

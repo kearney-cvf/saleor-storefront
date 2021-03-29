@@ -2,6 +2,7 @@ import "jest-styled-components";
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import { components } from "react-select";
 
 import { DropdownSelect } from ".";
@@ -29,13 +30,21 @@ const DEFAULT_PROPS = {
 
 describe("<DropdownSelect />", () => {
   it("exists", () => {
-    const wrapper = shallow(<DropdownSelect {...DEFAULT_PROPS} />);
+    const wrapper = shallow(
+      <IntlProvider locale="en">
+        <DropdownSelect {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should open select menu on click", () => {
-    const wrapper = mount(<DropdownSelect {...DEFAULT_PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <DropdownSelect {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     wrapper.find(S.SortLine).at(0).simulate("click");
 
@@ -43,7 +52,11 @@ describe("<DropdownSelect />", () => {
   });
 
   it("should close menu when clicking on option", () => {
-    const wrapper = mount(<DropdownSelect {...DEFAULT_PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <DropdownSelect {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     wrapper.find(S.SortLine).at(0).simulate("click");
     wrapper.find(components.Option).at(0).simulate("click");
@@ -55,7 +68,9 @@ describe("<DropdownSelect />", () => {
     DEFAULT_PROPS.onChange.mockReset();
 
     const wrapper = mount(
-      <DropdownSelect {...DEFAULT_PROPS} value={DEFAULT_PROPS.options[0]} />
+      <IntlProvider locale="en">
+        <DropdownSelect {...DEFAULT_PROPS} value={DEFAULT_PROPS.options[0]} />
+      </IntlProvider>
     );
 
     wrapper.find(S.SortLine).at(0).simulate("click");

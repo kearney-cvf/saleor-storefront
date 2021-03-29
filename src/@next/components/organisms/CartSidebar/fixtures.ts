@@ -112,6 +112,7 @@ const ITEM_VARIANT = (id: string): ICheckoutModelLineVariant => ({
       url: productImage,
       __typename: "Image",
     },
+    slug: "",
     __typename: "Product",
   },
   pricing: {

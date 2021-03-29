@@ -4,6 +4,7 @@ import { OrderStatus } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 import { mount, shallow } from "enzyme";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { ThankYou } from ".";
 import { messages } from "./ThankYou";
@@ -17,13 +18,21 @@ describe("<ThankYou />", () => {
   };
 
   it("exists", () => {
-    const wrapper = shallow(<ThankYou {...props} />);
+    const wrapper = shallow(
+      <IntlProvider locale="en">
+        <ThankYou {...props} />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should contain order number", () => {
-    const wrapper = shallow(<ThankYou {...props} />);
+    const wrapper = shallow(
+      // <IntlProvider locale="en">
+      <ThankYou {...props} />
+      // </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain(props.orderNumber);
   });
@@ -31,9 +40,11 @@ describe("<ThankYou />", () => {
   it("should call orderDetails function when clicked", () => {
     const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
     const wrapper = mount(
-      <RouterContext.Provider value={{ push: pushSpy } as any}>
-        <ThankYou {...props} />
-      </RouterContext.Provider>
+      <IntlProvider locale="en">
+        <RouterContext.Provider value={{ push: pushSpy } as any}>
+          <ThankYou {...props} />
+        </RouterContext.Provider>
+      </IntlProvider>
     );
 
     wrapper.find("button").at(1).simulate("click");
@@ -48,9 +59,11 @@ describe("<ThankYou />", () => {
   it("should call continueShopping function when clicked", () => {
     const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
     const wrapper = mount(
-      <RouterContext.Provider value={{ push: pushSpy } as any}>
-        <ThankYou {...props} />
-      </RouterContext.Provider>
+      <IntlProvider locale="en">
+        <RouterContext.Provider value={{ push: pushSpy } as any}>
+          <ThankYou {...props} />
+        </RouterContext.Provider>
+      </IntlProvider>
     );
 
     wrapper.find("button").at(0).simulate("click");
@@ -64,14 +77,20 @@ describe("<ThankYou />", () => {
 
   it("should display proper subtitle when order status is UNCONFIRMED", () => {
     const wrapper = mount(
-      <ThankYou {...props} orderStatus={OrderStatus.UNCONFIRMED} />
+      <IntlProvider locale="en">
+        <ThankYou {...props} orderStatus={OrderStatus.UNCONFIRMED} />
+      </IntlProvider>
     );
 
     expect(wrapper.text()).toContain(messages.unconfirmed.defaultMessage);
   });
 
   it("should display proper subtitle when order status is UNFULFILLED", () => {
-    const wrapper = mount(<ThankYou {...props} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <ThankYou {...props} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain(messages.unfulfilled.defaultMessage);
   });

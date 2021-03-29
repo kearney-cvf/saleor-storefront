@@ -2,6 +2,7 @@ import "jest-styled-components";
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import renderer from "react-test-renderer";
 import { ThemeProvider } from "styled-components";
 
@@ -14,10 +15,12 @@ import * as S from "./styles";
 describe("<ProductDescription />", () => {
   it("exists", () => {
     const wrapper = shallow(
-      <ProductDescription
-        attributes={attributes}
-        description={descriptionJSON}
-      />
+      <IntlProvider locale="en">
+        <ProductDescription
+          attributes={attributes}
+          description={descriptionJSON}
+        />
+      </IntlProvider>
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -26,12 +29,14 @@ describe("<ProductDescription />", () => {
   it("renders correctly", () => {
     const tree = renderer
       .create(
-        <ThemeProvider theme={defaultTheme}>
-          <ProductDescription
-            attributes={attributes}
-            description={descriptionJSON}
-          />
-        </ThemeProvider>
+        <IntlProvider locale="en">
+          <ThemeProvider theme={defaultTheme}>
+            <ProductDescription
+              attributes={attributes}
+              description={descriptionJSON}
+            />
+          </ThemeProvider>
+        </IntlProvider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -39,10 +44,12 @@ describe("<ProductDescription />", () => {
 
   it("should show product attributes when clicking on attributes tab", () => {
     const wrapper = mount(
-      <ProductDescription
-        attributes={attributes}
-        description={descriptionJSON}
-      />
+      <IntlProvider locale="en">
+        <ProductDescription
+          attributes={attributes}
+          description={descriptionJSON}
+        />
+      </IntlProvider>
     );
 
     wrapper.find(S.TabTitle).at(1).simulate("click");

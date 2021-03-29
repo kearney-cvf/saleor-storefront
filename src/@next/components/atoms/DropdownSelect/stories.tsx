@@ -1,5 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { DropdownSelect } from ".";
 
@@ -20,7 +21,11 @@ const options = [
 
 const Container = () => {
   const [value, setValue] = React.useState();
-  return <DropdownSelect options={options} value={value} onChange={setValue} />;
+  return (
+    <IntlProvider locale="en">
+      <DropdownSelect options={options} value={value} onChange={setValue} />
+    </IntlProvider>
+  );
 };
 
 storiesOf("@components/atoms/DropdownSelect", module)

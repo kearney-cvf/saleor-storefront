@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React, { ReactNode } from "react";
+import { IntlProvider } from "react-intl";
 import styled from "styled-components";
 
 import { productVariants } from "./fixtures";
@@ -31,13 +32,21 @@ const PROPS = {
 
 storiesOf("@components/organisms/ProductVariantPicker", module)
   .addParameters({ component: ProductVariantPicker })
-  .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
+  .add("default", () =>
+    withContainer(
+      <IntlProvider locale="en">
+        <ProductVariantPicker {...PROPS} />
+      </IntlProvider>
+    )
+  )
   .add("with sidebar", () =>
     withContainer(
-      <ProductVariantPicker
-        selectSidebar
-        selectSidebarTarget={portalRoot}
-        {...PROPS}
-      />
+      <IntlProvider locale="en">
+        <ProductVariantPicker
+          selectSidebar
+          selectSidebarTarget={portalRoot}
+          {...PROPS}
+        />
+      </IntlProvider>
     )
   );

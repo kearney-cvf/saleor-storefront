@@ -1,5 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { CCProviders } from "@components/atoms";
 
@@ -18,4 +19,8 @@ const elements = [ccData, ccData, ccData];
 
 storiesOf("@components/organisms/CreditCardGrid", module)
   .addParameters({ component: CreditCardGrid })
-  .add("default", () => <CreditCardGrid creditCards={elements} />);
+  .add("default", () => (
+    <IntlProvider locale="en">
+      <CreditCardGrid creditCards={elements} />
+    </IntlProvider>
+  ));

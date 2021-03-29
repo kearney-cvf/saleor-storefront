@@ -22,13 +22,21 @@ describe("<CartSummaryRow />", () => {
   });
 
   it("should display product price", () => {
-    const wrapper = mount(<CartSummaryRow {...DEFAULT_PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummaryRow {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain(DEFAULT_PROPS.price.gross.amount);
   });
 
   it("should display product sku", () => {
-    const wrapper = mount(<CartSummaryRow {...DEFAULT_PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummaryRow {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain(DEFAULT_PROPS.sku);
   });

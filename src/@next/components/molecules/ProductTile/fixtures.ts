@@ -1,6 +1,7 @@
-import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+// import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import { IProductList_products_edges_node } from "../../../types";
 
-export const PRODUCT: ProductList_products_edges_node = {
+export const PRODUCT: IProductList_products_edges_node = {
   __typename: "Product",
   id: "UHJvZHVjdDo3Mg==",
   name: "Apple Juice",

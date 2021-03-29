@@ -12,3 +12,4 @@ export * from "./ICardData";
 export * from "./IFormError";
 export * from "./ICheckoutStep";
 export * from "./IProduct";
+export * from "./IProductListsEdgesNode";

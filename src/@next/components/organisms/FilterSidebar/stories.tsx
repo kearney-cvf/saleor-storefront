@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { FilterSidebar } from ".";
 import { DEFAULT_PROPS } from "./testData";
@@ -15,10 +16,12 @@ if (!portalRoot) {
 storiesOf("@components/organisms/FilterSidebar", module)
   .addParameters({ component: FilterSidebar })
   .add("default", () => (
-    <FilterSidebar
-      target={portalRoot}
-      {...DEFAULT_PROPS}
-      hide={action("hide")}
-      onAttributeFiltersChange={action("onAttributesFiltersChange")}
-    />
+    <IntlProvider locale="en">
+      <FilterSidebar
+        target={portalRoot}
+        {...DEFAULT_PROPS}
+        hide={action("hide")}
+        onAttributeFiltersChange={action("onAttributesFiltersChange")}
+      />
+    </IntlProvider>
   ));

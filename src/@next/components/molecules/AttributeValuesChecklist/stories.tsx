@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { styled } from "@styles";
 
@@ -14,10 +15,12 @@ const Container = styled.div`
 storiesOf("@components/molecules/AttributeValuesChecklist", module)
   .addParameters({ component: AttributeValuesChecklist })
   .add("default", () => (
-    <Container>
-      <AttributeValuesChecklist
-        {...DEFAULT_PROPS}
-        onValueClick={action("click")}
-      />
-    </Container>
+    <IntlProvider locale="en">
+      <Container>
+        <AttributeValuesChecklist
+          {...DEFAULT_PROPS}
+          onValueClick={action("click")}
+        />
+      </Container>
+    </IntlProvider>
   ));
